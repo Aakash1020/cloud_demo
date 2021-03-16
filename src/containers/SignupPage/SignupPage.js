@@ -4,7 +4,7 @@ import { signup } from "../../ducks/auth.duck";
 import { makeStyles, Container, Avatar, Typography } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
 import { SignupForm } from "../../forms";
-import Animate from "../LoginPage/Animate";
+// import Animate from "../LoginPage/Animate";
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -45,7 +45,7 @@ const SignupPage = (props) => {
 
   return (
     <>
-      <Animate />
+      {/* <Animate /> */}
       <section>
         <Container component="main" maxWidth="xs" className={classes.section}>
           <div className={classes.paper}>
