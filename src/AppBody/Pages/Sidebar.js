@@ -127,7 +127,6 @@ function Sidebar(props) {
           <Button
             variant="contained"
             color="secondary"
-            href="#pricing"
             startIcon={<ExitToAppIcon />}
           >
             Exit
