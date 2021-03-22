@@ -4,10 +4,8 @@ import { login } from "../../ducks/auth.duck";
 import { makeStyles, Container, Avatar, Typography } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
 import { LoginForm } from "../../forms";
-// import Animate from "./Animate";
-
 const useStyles = makeStyles((theme) => ({
-  section: {
+  section_loginpage: {
     height: "100vh",
     width: "100%",
     display: "grid",
@@ -26,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
+  },
+  backgroundcolor: {
+    backgroundColor: "#4f00ce",
+    width: "100%",
+    height: "100vh",
   },
 }));
 
@@ -47,8 +50,12 @@ const LoginPage = (props) => {
   return (
     <>
       {/* <Animate /> */}
-      <section>
-        <Container component="main" maxWidth="xs" className={classes.section}>
+      <section className={classes.backgroundcolor}>
+        <Container
+          component="main"
+          maxWidth="xs"
+          className={classes.section_loginpage}
+        >
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlined />
