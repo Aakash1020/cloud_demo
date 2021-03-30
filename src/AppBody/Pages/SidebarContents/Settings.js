@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
   section_settings: {
     display: "grid",
     placeItems: "center",
-    width: "100%",
+    width: "auto",
+    // backgroundColor: "red",
     height: "100vh",
   },
 
