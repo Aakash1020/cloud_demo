@@ -25,8 +25,6 @@ const NotFoundPage = () => {
 
   return (
     <>
-      {/* <Animate /> */}
-
       <div id="container"></div>
       <section className={classes.section_mainstartpage}>
         <Container component="main" maxWidth="xs">
@@ -37,7 +35,6 @@ const NotFoundPage = () => {
           </Paper>
         </Container>
       </section>
-      {/* <ParticlesBg type="lines" bg={true} /> */}
     </>
   );
 };
