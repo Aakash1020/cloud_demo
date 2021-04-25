@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles, Container, Paper } from "@material-ui/core";
+import { Button } from "react-bootstrap";
+
 const useStyles = makeStyles((theme) => ({
   section_mainstartpage: {
+    backgroundColor: "#05264c",
     display: "grid",
     alignItems: "center",
     width: "100%",
     height: "100vh",
-    backgroundColor: "#4f00ce",
   },
   paperStartPage: {
     display: "flex",
@@ -20,17 +22,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 const NotFoundPage = () => {
   const classes = useStyles();
+
   return (
     <>
       {/* <Animate /> */}
+
+      <div id="container"></div>
       <section className={classes.section_mainstartpage}>
         <Container component="main" maxWidth="xs">
           <Paper className={classes.paperStartPage}>
-            <h1>Get Started </h1>
-            <Link to="/login">Sign in</Link>
+            <Button variant="primary" size="lg">
+              <Link to="/login">Sign in</Link>
+            </Button>
           </Paper>
         </Container>
       </section>
+      {/* <ParticlesBg type="lines" bg={true} /> */}
     </>
   );
 };

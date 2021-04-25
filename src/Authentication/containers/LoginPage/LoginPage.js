@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../ducks/auth.duck";
 import { makeStyles, Container, Avatar, Typography } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
+import ParticlesBg from "particles-bg";
 import { LoginForm } from "../../forms";
 const useStyles = makeStyles((theme) => ({
   section_loginpage: {
@@ -26,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   backgroundcolor: {
-    backgroundColor: "#4f00ce",
     width: "100%",
     height: "100vh",
   },
@@ -71,6 +71,7 @@ const LoginPage = (props) => {
           </div>
         </Container>
       </section>
+      <ParticlesBg type="lines" bg={true} />
     </>
   );
 };

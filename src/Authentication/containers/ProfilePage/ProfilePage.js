@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentUser } from "../../ducks/user.duck";
 import { logout } from "../../ducks/auth.duck";
 import { Link } from "react-router-dom";
+
 import {
   makeStyles,
   Container,
@@ -12,6 +13,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { ExitToApp } from "@material-ui/icons";
+import { motion } from "framer-motion";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "0",
     height: "100vh",
     padding: "0",
-    backgroundColor: "#4f00ce",
+    backgroundColor: "#05264c",
   },
 }));
 
@@ -63,36 +65,63 @@ const ProfilePage = (props) => {
   const firstLetterName = fullName ? fullName.charAt(0) : null;
   const email = currentUser && currentUser.email;
 
+  const pageZoom = {
+    initial: {
+      opacity: 0,
+      scale: 0.95,
+    },
+    in: {
+      opacity: 1,
+      scale: 1,
+    },
+    out: {
+      opacity: 0,
+      scale: 0.95,
+    },
+  };
+  const pageTransition = {
+    type: "tween",
+    duration: 0.3,
+  };
+
   return (
     <>
       <div className={classes.Profilepage_body}>
         <Container component="main" maxWidth="xs">
-          <Paper className={classes.paper}>
-            <Avatar className={classes.avatar}>{firstLetterName}</Avatar>
-            <Typography component="h1" variant="h5">
-              {fullName}
-            </Typography>
-            <Typography color="textSecondary">{email}</Typography>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              startIcon={<ExitToApp />}
-              onClick={() => handleLogout()}
-            >
-              Logout
-            </Button>
-            <Link to="/dashboard" className={classes.linktext}>
+          <motion.div
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={pageZoom}
+            transition={pageTransition}
+          >
+            <Paper className={classes.paper}>
+              <Avatar className={classes.avatar}>{firstLetterName}</Avatar>
+              <Typography component="h1" variant="h5">
+                {fullName}
+              </Typography>
+              <Typography color="textSecondary">{email}</Typography>
               <Button
                 variant="contained"
                 color="secondary"
                 className={classes.button}
                 startIcon={<ExitToApp />}
+                onClick={() => handleLogout()}
               >
-                Enter Dashboard
+                Logout
               </Button>
-            </Link>
-          </Paper>
+              <Link to="/dashboard" className={classes.linktext}>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className={classes.button}
+                  startIcon={<ExitToApp />}
+                >
+                  Enter Dashboard
+                </Button>
+              </Link>
+            </Paper>
+          </motion.div>
         </Container>
       </div>
     </>

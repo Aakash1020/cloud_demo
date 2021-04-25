@@ -83,6 +83,9 @@ export default function Settings() {
     type: "tween",
     duration: 0.3,
   };
+  const handleClick = () => {
+    window.alert("You are Authenticated");
+  };
   return (
     <motion.div
       initial="initial"
@@ -150,7 +153,7 @@ export default function Settings() {
               color="default"
               className={classes.upload_button}
               startIcon={<CloudUploadIcon />}
-              onClick={send}
+              onClick={handleClick}
             >
               Send
             </Button>

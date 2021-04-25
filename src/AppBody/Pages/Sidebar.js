@@ -3,15 +3,16 @@ import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import List from "@material-ui/core/List";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import Settings from "./SidebarContents/Settings";
 import Overview from "./SidebarContents/Overview";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import ChartPage from "./SidebarContents/ChartDetails/ChartPage";
 import PricingPage from "./SidebarContents/PricingDetails/PricingPage";
+import useBodyScrollLock from "use-lock-body-scroll";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -32,11 +33,12 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   content: {
+    backgroundColor: "#05264c",
     width: "100vw",
   },
 
   list: {
-    backgroundColor: "#4f00ce",
+    backgroundColor: "white",
     height: "100vh",
     margin: "0",
     padding: "0",
@@ -45,16 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   sidebar_button_Text: {
-    backgroundColor: "white",
-    width: "70%",
-    height: "50px",
-    color: "black",
-  },
-  sidebar_button_Text_child1: {
-    backgroundColor: "white",
-    height: "50px",
-    width: "70%",
-    color: "black",
+    backgroundColor: "#05264c",
+    width: "50%",
+    height: "40px",
+    color: "white",
   },
 
   linktext: {
@@ -63,9 +59,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Sidebar(props) {
-  const { window } = props;
+  useBodyScrollLock();
+  // const { window } = props;
   const classes = useStyles();
-  const theme = useTheme();
+  // const theme = useTheme();
 
   //Drawer Sidebar..................
   const drawer = (
@@ -81,7 +78,7 @@ function Sidebar(props) {
           Settings
         </Button>
         <Button
-          className={classes.sidebar_button_Text_child1}
+          className={classes.sidebar_button_Text}
           variant="contained"
           href="#overview"
         >
@@ -122,8 +119,8 @@ function Sidebar(props) {
     </div>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  // const container =
+  //   window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className={classes.root}>
