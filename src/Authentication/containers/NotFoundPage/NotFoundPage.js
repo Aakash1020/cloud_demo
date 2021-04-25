@@ -32,7 +32,7 @@ const NotFoundPage = () => {
         <Container component="main" maxWidth="xs">
           <Paper className={classes.paperStartPage}>
             <Button variant="primary" size="lg">
-              <Link to="/login">Sign in</Link>
+              <Link to="/login">Get Started</Link>
             </Button>
           </Paper>
         </Container>
