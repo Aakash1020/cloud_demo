@@ -85,6 +85,7 @@ export default function Settings() {
   };
   const handleClick = () => {
     window.alert("You are Authenticated");
+    send();
   };
   return (
     <motion.div
