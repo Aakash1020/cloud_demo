@@ -111,7 +111,7 @@ const LoginForm = (props) => {
             >
               Sign In
             </Button>
-            <Grid container justify="flex-end">
+            <Grid container justify="center">
               <Grid item>
                 <Link to="/signup" className={classes.link}>
                   Don't have an account? Sign Up

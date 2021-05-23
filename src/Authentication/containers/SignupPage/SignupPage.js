@@ -4,7 +4,7 @@ import { signup } from "../../ducks/auth.duck";
 import { makeStyles, Container, Avatar, Typography } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
 import { SignupForm } from "../../forms";
-import ParticlesBg from "particles-bg";
+// import ParticlesBg from "particles-bg";
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -63,7 +63,7 @@ const SignupPage = (props) => {
           </div>
         </Container>
       </section>
-      <ParticlesBg type="lines" bg={true} />
+      {/* <ParticlesBg type="lines" bg={true} /> */}
     </>
   );
 };

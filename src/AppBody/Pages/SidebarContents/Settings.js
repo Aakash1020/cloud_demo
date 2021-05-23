@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   paper_style: {
     width: "450px",
     padding: "20px 30px",
-    height: "400px",
+    height: "auto",
   },
   upload_button: {
     overflow: "hidden",
@@ -44,26 +44,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Settings() {
-  const [url, setUrl] = useState();
-  const [email, setEmail] = useState();
-  const [file, setFile] = useState();
+  const [Email, setEmail] = useState();
+  const [BucketName, setBucketName] = useState();
+  const [Accesskey, setAccesskey] = useState();
+  const [Secretkey, setSecretkey] = useState();
 
-  const send = (e) => {
-    const data = new FormData();
-    data.append("URL", url);
-    data.append("Email", email);
-    data.append("file", file);
-
+  const submitHandle = () => {
     axios
-      .post("http://localhost:3000/upload", data)
-      .then(function (response) {
-        console.log(response);
+      .post("http://localhost:3001/api/insert", {
+        email: Email,
+        bucket_name: BucketName,
+        access_key: Accesskey,
+        secret_key: Secretkey,
+      })
+      .then(() => {
+        console.log(alert("Details are Submited Successfully :)"));
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 
+  //STYLE CLASS//
   const classes = useStyles();
   const pageZoom = {
     initial: {
@@ -83,10 +85,7 @@ export default function Settings() {
     type: "tween",
     duration: 0.3,
   };
-  const handleClick = () => {
-    window.alert("You are Authenticated");
-    send();
-  };
+
   return (
     <motion.div
       initial="initial"
@@ -100,27 +99,11 @@ export default function Settings() {
           <Paper className={classes.paper_style} elevation={3}>
             <form action="#">
               <div className={classes.input_div}>
-                <label htmlFor="URL">
-                  URL<span className={classes.span}>*</span>
-                </label>
-                <TextField
-                  label="URL"
-                  variant="outlined"
-                  className={classes.input}
-                  type="text"
-                  id="URL"
-                  onChange={(event) => {
-                    const { value } = event.target;
-                    setUrl(value);
-                  }}
-                />
-              </div>
-              <div className={classes.input_div}>
                 <label htmlFor="Email">
-                  Email<span className={classes.span}>*</span>
+                  Email ID<span className={classes.span}>*</span>
                 </label>
                 <TextField
-                  label="Email"
+                  label="email"
                   variant="outlined"
                   className={classes.input}
                   type="text"
@@ -132,6 +115,54 @@ export default function Settings() {
                 />
               </div>
               <div className={classes.input_div}>
+                <label htmlFor="URL">
+                  Bucket Name<span className={classes.span}>*</span>
+                </label>
+                <TextField
+                  label="bucket-name"
+                  variant="outlined"
+                  className={classes.input}
+                  type="text"
+                  id="URL"
+                  onChange={(event) => {
+                    const { value } = event.target;
+                    setBucketName(value);
+                  }}
+                />
+              </div>
+              <div className={classes.input_div}>
+                <label htmlFor="Email">
+                  Access Key<span className={classes.span}>*</span>
+                </label>
+                <TextField
+                  label="a-key"
+                  variant="outlined"
+                  className={classes.input}
+                  type="text"
+                  id="AccessKey"
+                  onChange={(event) => {
+                    const { value } = event.target;
+                    setAccesskey(value);
+                  }}
+                />
+              </div>
+              <div className={classes.input_div}>
+                <label htmlFor="Email">
+                  Secret Key<span className={classes.span}>*</span>
+                </label>
+                <TextField
+                  label="s-key"
+                  variant="outlined"
+                  className={classes.input}
+                  type="text"
+                  id="SecretKey"
+                  onChange={(event) => {
+                    const { value } = event.target;
+                    setSecretkey(value);
+                  }}
+                />
+              </div>
+              {/* <div className={classes.input_div}>
                 <label htmlFor="file">
                   Upload <span className={classes.span}>JSON</span> file for
                   check<span className={classes.span}>*</span>
@@ -140,21 +171,18 @@ export default function Settings() {
                   variant="outlined"
                   className={classes.input}
                   type="file"
-                  id="file"
-                  accept=".json"
-                  onChange={(event) => {
-                    const file = event.target.files[0];
-                    setFile(file);
-                  }}
+                  name="image"
+                  accept="image/*"
+                  multiple={false}
                 />
-              </div>
+              </div> */}
             </form>
             <Button
               variant="contained"
               color="default"
               className={classes.upload_button}
               startIcon={<CloudUploadIcon />}
-              onClick={handleClick}
+              onClick={submitHandle}
             >
               Send
             </Button>

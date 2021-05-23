@@ -1,65 +1,63 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Form } from 'react-final-form';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Form } from "react-final-form";
 import {
   makeStyles,
   Grid,
   Button,
   Typography,
-  CircularProgress
-} from '@material-ui/core';
-import { FieldTextInput } from '../../components';
+  CircularProgress,
+} from "@material-ui/core";
+import { FieldTextInput } from "../../components";
 
-const USER_TAKEN = 'auth/email-already-in-use';
+const USER_TAKEN = "auth/email-already-in-use";
 
 const useStyles = makeStyles((theme) => ({
   form: {
-    width: '100%',
+    width: "100%",
     marginTop: theme.spacing(3),
   },
   error: {
-    marginBottom: theme.spacing(3)
+    marginBottom: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
   buttonProgress: {
-    color: 'white',
+    color: "white",
   },
   link: {
     color: theme.palette.primary.main,
-    textDecoration: 'none',
+    textDecoration: "none",
 
-    '&:hover': {
-      textDecoration: 'underline'
-    }
-  }
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  },
 }));
 
-const SignupForm = props => {
-
+const SignupForm = (props) => {
   const classes = useStyles();
 
   return (
     <Form
       {...props}
-      render={formProps => {
-
-        const {
-          handleSubmit,
-          inProgress,
-          onError
-        } = formProps;
+      render={(formProps) => {
+        const { handleSubmit, inProgress, onError } = formProps;
 
         const errorMessage = onError
           ? onError.code === USER_TAKEN
-            ? 'User already exist'
-            : 'Something went wrong. Try again'
+            ? "User already exist"
+            : "Something went wrong. Try again"
           : null;
 
         return (
           <form className={classes.form} onSubmit={handleSubmit}>
-            {errorMessage ? <Typography color="error" className={classes.error}>{errorMessage}</Typography> : null}
+            {errorMessage ? (
+              <Typography color="error" className={classes.error}>
+                {errorMessage}
+              </Typography>
+            ) : null}
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <FieldTextInput
@@ -112,11 +110,18 @@ const SignupForm = props => {
               variant="contained"
               color="primary"
               className={classes.submit}
-              startIcon={inProgress ? <CircularProgress size={20} className={classes.buttonProgress} /> : null}
+              startIcon={
+                inProgress ? (
+                  <CircularProgress
+                    size={20}
+                    className={classes.buttonProgress}
+                  />
+                ) : null
+              }
             >
               Sign Up
             </Button>
-            <Grid container justify="flex-end">
+            <Grid container justify="center">
               <Grid item>
                 <Link to="/login" className={classes.link}>
                   Already have an account? Sign in
@@ -128,6 +133,6 @@ const SignupForm = props => {
       }}
     />
   );
-}
+};
 
 export default SignupForm;
