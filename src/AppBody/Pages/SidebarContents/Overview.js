@@ -18,9 +18,9 @@ function Overview() {
   useEffect(() => {
     async function getUser() {
       try {
-        const response = await axios.get("https://localhost/api/get/countsafe");
+        const response = await axios.get("http://localhost/api/get/countsafe");
         const response1 = await axios.get(
-          "https://localhost:3001/api/get/countunsafe"
+          "http://localhost:3001/api/get/countunsafe"
         );
         const data = response.data;
         const data1 = response1.data;
