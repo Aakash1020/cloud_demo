@@ -7,14 +7,6 @@ function Overview() {
   const [safeData, setSafeData] = useState([]);
   const [maliciousData, setmaliciousData] = useState([]);
 
-  // let count = 0;
-  // let count2 = 0;
-  // if (Data === "Safe") {
-  //   count++;
-  // } else if (Data === "Malicious") {
-  //   count2++;
-  // }
-
   useEffect(() => {
     async function getUser() {
       try {
@@ -37,9 +29,6 @@ function Overview() {
 
   const safe = safeData.map((num) => num.countsafe);
   const malicious = maliciousData.map((num) => num.countunsafe);
-  // const a = parseInt(safe);
-  // const b = parseInt(malicious);
-  // const sum = a + b;
 
   const data = {
     labels: ["Safe", "Malicious"],
