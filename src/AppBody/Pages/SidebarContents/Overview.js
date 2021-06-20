@@ -66,7 +66,7 @@ function Overview() {
               options={{
                 title: {
                   display: true,
-                  text: "Data Severity",
+                  text: `Rate of Detection (Safe : ${safe} Malicious : ${malicious})`,
                   fontSize: 20,
                 },
                 legend: {
