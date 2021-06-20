@@ -41,19 +41,24 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     height: "100vh",
     margin: "0",
-    padding: "0",
-    display: "grid",
+    padding: "30px",
+    display: "flex",
+    flexDirection: "column",
     placeItems: "center",
   },
 
   sidebar_button_Text: {
     backgroundColor: "#05264c",
-    width: "50%",
+    marginTop: "20px",
+    marginBottom: "20px",
+    width: "100%",
     height: "40px",
     color: "white",
   },
 
   linktext: {
+    position: "absolute",
+    bottom: "20px",
     textDecoration: "none",
   },
 }));
@@ -84,20 +89,20 @@ function Sidebar(props) {
         >
           Overview
         </Button>
-        <Button
+        {/* <Button
           className={classes.sidebar_button_Text}
           variant="contained"
           href="#chartpage"
         >
           Graphs
-        </Button>
-        <Button
+        </Button> */}
+        {/* <Button
           className={classes.sidebar_button_Text}
           variant="contained"
           href="#products"
         >
           Products
-        </Button>
+        </Button> */}
         <Button
           className={classes.sidebar_button_Text}
           variant="contained"

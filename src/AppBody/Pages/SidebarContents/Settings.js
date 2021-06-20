@@ -52,17 +52,18 @@ export default function Settings() {
   const submitHandle = () => {
     axios
       .post("http://localhost:3001/api/insert", {
-        email: Email,
+        v_email: Email,
         bucket_name: BucketName,
-        access_key: Accesskey,
-        secret_key: Secretkey,
+        v_access_key_id: Accesskey,
+        v_secret_key: Secretkey,
       })
-      .then(() => {
-        console.log(alert("Details are Submited Successfully :)"));
+      .then(function (response) {
+        console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
+    window.alert("Successfully Sent");
   };
 
   //STYLE CLASS//

@@ -1,276 +1,96 @@
+import axios from "axios";
 import React from "react";
-import Typography from "@material-ui/core/Typography";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Pie } from "react-chartjs-2";
 
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
+function Overview() {
+  const [safeData, setSafeData] = useState([]);
+  const [maliciousData, setmaliciousData] = useState([]);
 
-const useStyles = makeStyles({
-  card: {
-    maxWidth: 345,
-    margin: "20px",
-  },
-  media: {
-    height: 140,
-  },
-  overview_body: {
+  // let count = 0;
+  // let count2 = 0;
+  // if (Data === "Safe") {
+  //   count++;
+  // } else if (Data === "Malicious") {
+  //   count2++;
+  // }
+
+  useEffect(() => {
+    async function getUser() {
+      try {
+        const response = await axios.get(
+          "http://localhost:3001/api/get/countsafe"
+        );
+        const response1 = await axios.get(
+          "http://localhost:3001/api/get/countunsafe"
+        );
+        const data = response.data;
+        const data1 = response1.data;
+        setSafeData(data);
+        setmaliciousData(data1);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getUser();
+  }, []);
+
+  const safe = safeData.map((num) => num.countsafe);
+  const malicious = maliciousData.map((num) => num.countunsafe);
+  // const a = parseInt(safe);
+  // const b = parseInt(malicious);
+  // const sum = a + b;
+
+  const data = {
+    labels: ["Safe", "Malicious"],
+    datasets: [
+      {
+        label: "Data",
+        backgroundColor: ["#66ff33", "#ff0000"],
+        hoverBackgroundColor: ["#afff94", "#ff9191"],
+        data: [safe, malicious],
+      },
+    ],
+  };
+
+  const chartstyle = {
+    backgroundColor: "white",
+    padding: "40px",
+    borderRadius: "5px",
+  };
+  const chartpage = {
     display: "grid",
     placeItems: "center",
-    backgroundColor: "orange",
-    width: "100%",
     height: "100vh",
-  },
-  overview: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  section: {
-    display: "flex",
-  },
-});
-
-const Overview = () => {
-  const classes = useStyles();
-
-  const pageZoom = {
-    initial: {
-      opacity: 0,
-      scale: 0.95,
-    },
-    in: {
-      opacity: 1,
-      scale: 1,
-    },
-    out: {
-      opacity: 0,
-      scale: 0.95,
-    },
+    width: "100%",
   };
-  const pageTransition = {
-    type: "tween",
-    duration: 0.3,
-  };
+
   return (
-    <motion.div
-      initial="initial"
-      animate="in"
-      exit="out"
-      variants={pageZoom}
-      transition={pageTransition}
-    >
-      <div className={classes.overview_body}>
-        <div id="overview" className={classes.overview}>
-          <section className={classes.section}>
-            <div>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Content
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      Contents are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
-                      Antarctica
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Share
-                  </Button>
-                  <Button size="small" color="primary">
-                    Learn More
-                  </Button>
-                </CardActions>
-              </Card>
-            </div>
-            <div>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Content
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      Contents are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
-                      Antarctica
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Share
-                  </Button>
-                  <Button size="small" color="primary">
-                    Learn More
-                  </Button>
-                </CardActions>
-              </Card>
-            </div>
-            <div>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Content
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      Contents are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
-                      Antarctica
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Share
-                  </Button>
-                  <Button size="small" color="primary">
-                    Learn More
-                  </Button>
-                </CardActions>
-              </Card>
-            </div>
-          </section>
-          <section className={classes.section}>
-            <div>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Content
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      Contents are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
-                      Antarctica
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Share
-                  </Button>
-                  <Button size="small" color="primary">
-                    Learn More
-                  </Button>
-                </CardActions>
-              </Card>
-            </div>
-            <div>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Content
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      Contents are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
-                      Antarctica
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Share
-                  </Button>
-                  <Button size="small" color="primary">
-                    Learn More
-                  </Button>
-                </CardActions>
-              </Card>
-            </div>
-            <div>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Content
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      Contents are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
-                      Antarctica
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Share
-                  </Button>
-                  <Button size="small" color="primary">
-                    Learn More
-                  </Button>
-                </CardActions>
-              </Card>
-            </div>
-          </section>
+    <div id="overview" style={chartpage}>
+      <div style={chartstyle}>
+        <div className="chart">
+          {safeData?.length > 0 && (
+            <Pie
+              height="350"
+              width="450"
+              data={data}
+              options={{
+                title: {
+                  display: true,
+                  text: "Data Severity",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "right",
+                },
+              }}
+            />
+          )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
-};
+}
 
 export default Overview;
