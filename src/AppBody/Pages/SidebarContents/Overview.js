@@ -19,10 +19,10 @@ function Overview() {
     async function getUser() {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/get/countsafe"
+          "http://185.201.8.54:3001/api/get/countsafe"
         );
         const response1 = await axios.get(
-          "http://localhost:3001/api/get/countunsafe"
+          "http://185.201.8.54:3001/api/get/countunsafe"
         );
         const data = response.data;
         const data1 = response1.data;
